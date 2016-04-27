@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<application>
+    <packageName>org.cert.sendsms</packageName>
+    <components>
+        <Component>
+            <type>activity</type>
+            <name>org.cert.sendsms.MainActivity</name>
+            <RequiredPermissions/>
+            <IntentFilter>
+                <filter>
+                    <actions>android.intent.action.MAIN</actions>
+                    <categories>android.intent.category.LAUNCHER</categories>
+                    <pathData></pathData>
+                </filter>
+            </IntentFilter>
+            <PropagatedPermissions/>
+            <sensitiveFlows>
+                <Flow>
+                    <sink>&lt;android.telephony.SmsManager: void sendTextMessage(java.lang.String,java.lang.String,java.lang.String,android.app.PendingIntent,android.app.PendingIntent)&gt;("1234567890", null, $r1, null, null) </sink>
+                    <sinkCalledAt>org.cert.sendsms.MainActivity: void sendSMSMessage(java.lang.String)</sinkCalledAt>
+                    <source> staticinvoke &lt;android.telephony.SmsManager: android.telephony.SmsManager getDefault()&gt;() </source>
+                    <sourceCalledAt>org.cert.sendsms.MainActivity: void sendSMSMessage(java.lang.String)</sourceCalledAt>
+                    <sinkDomain>SMS_MMS</sinkDomain>
+                    <sourceDomain>NETWORK_INFORMATION</sourceDomain>
+                </Flow>
+                <Flow>
+                    <sink>&lt;android.telephony.SmsManager: void sendTextMessage(java.lang.String,java.lang.String,java.lang.String,android.app.PendingIntent,android.app.PendingIntent)&gt;("1234567890", null, $r1, null, null) </sink>
+                    <sinkCalledAt>org.cert.sendsms.MainActivity: void sendSMSMessage(java.lang.String)</sinkCalledAt>
+                    <source> virtualinvoke $r1.&lt;android.content.Intent: android.os.Bundle getExtras()&gt;() </source>
+                    <sourceCalledAt>org.cert.sendsms.MainActivity: void onActivityResult(int,int,android.content.Intent)</sourceCalledAt>
+                    <sinkDomain>SMS_MMS</sinkDomain>
+                    <sourceDomain>IPC</sourceDomain>
+                </Flow>
+                <Flow>
+                    <sink>&lt;android.telephony.SmsManager: void sendTextMessage(java.lang.String,java.lang.String,java.lang.String,android.app.PendingIntent,android.app.PendingIntent)&gt;("1234567890", null, $r1, null, null) </sink>
+                    <sinkCalledAt>org.cert.sendsms.MainActivity: void sendSMSMessage(java.lang.String)</sinkCalledAt>
+                    <source> virtualinvoke $r3.&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;("secret") </source>
+                    <sourceCalledAt>org.cert.sendsms.MainActivity: void onActivityResult(int,int,android.content.Intent)</sourceCalledAt>
+                    <sinkDomain>SMS_MMS</sinkDomain>
+                    <sourceDomain>BUNDLE</sourceDomain>
+                </Flow>
+            </sensitiveFlows>
+        </Component>
+    </components>
+    <newIntents>
+        <Intent>
+            <calledAt>org.cert.sendsms.Button1Listener: void onClick(android.view.View)</calledAt>
+            <sender>org.cert.sendsms.Button1Listener</sender>
+            <component></component>
+            <action>"android.intent.action.SEND"</action>
+            <dataType>"text/plain"</dataType>
+            <scheme></scheme>
+            <extra>true</extra>
+            <sensitiveData>false</sensitiveData>
+            <sensitiveFlows>
+                <Flow>
+                    <sink>&lt;android.content.Intent: android.content.Intent putExtra(java.lang.String,java.lang.String)&gt;("secret", $r4) </sink>
+                    <sinkCalledAt>org.cert.sendsms.Button1Listener: void onClick(android.view.View)</sinkCalledAt>
+                    <source> virtualinvoke $r6.&lt;org.cert.sendsms.MainActivity: java.lang.Object getSystemService(java.lang.String)&gt;("phone") </source>
+                    <sourceCalledAt>org.cert.sendsms.Button1Listener: void onClick(android.view.View)</sourceCalledAt>
+                    <sinkDomain>IPC</sinkDomain>
+                    <sourceDomain>UNDEFINED</sourceDomain>
+                </Flow>
+                <Flow>
+                    <sink>&lt;android.content.Intent: android.content.Intent putExtra(java.lang.String,java.lang.String)&gt;("secret", $r4) </sink>
+                    <sinkCalledAt>org.cert.sendsms.Button1Listener: void onClick(android.view.View)</sinkCalledAt>
+                    <source> virtualinvoke $r7.&lt;android.telephony.TelephonyManager: java.lang.String getDeviceId()&gt;() </source>
+                    <sourceCalledAt>org.cert.sendsms.Button1Listener: void onClick(android.view.View)</sourceCalledAt>
+                    <sinkDomain>IPC</sinkDomain>
+                    <sourceDomain>UNIQUE_IDENTIFIER</sourceDomain>
+                </Flow>
+            </sensitiveFlows>
+            <consumerMethod>startActivityForResult</consumerMethod>
+            <id>f2fu1f6rg4477aqfqtlhpfd491</id>
+            <random/>
+        </Intent>
+        <Intent>
+            <calledAt>org.cert.sendsms.Button1Listener: void onClick(android.view.View)</calledAt>
+            <sender>org.cert.sendsms.Button1Listener</sender>
+            <component></component>
+            <action>"android.intent.action.SEND"</action>
+            <dataType>"text/plain"</dataType>
+            <scheme></scheme>
+            <extra>true</extra>
+            <sensitiveData>false</sensitiveData>
+            <sensitiveFlows>
+                <Flow>
+                    <sink>&lt;android.content.Intent: android.content.Intent putExtra(java.lang.String,java.lang.String)&gt;("secret", $r4) </sink>
+                    <sinkCalledAt>org.cert.sendsms.Button1Listener: void onClick(android.view.View)</sinkCalledAt>
+                    <source> virtualinvoke $r6.&lt;org.cert.sendsms.MainActivity: java.lang.Object getSystemService(java.lang.String)&gt;("phone") </source>
+                    <sourceCalledAt>org.cert.sendsms.Button1Listener: void onClick(android.view.View)</sourceCalledAt>
+                    <sinkDomain>IPC</sinkDomain>
+                    <sourceDomain>UNDEFINED</sourceDomain>
+                </Flow>
+                <Flow>
+                    <sink>&lt;android.content.Intent: android.content.Intent putExtra(java.lang.String,java.lang.String)&gt;("secret", $r4) </sink>
+                    <sinkCalledAt>org.cert.sendsms.Button1Listener: void onClick(android.view.View)</sinkCalledAt>
+                    <source> virtualinvoke $r7.&lt;android.telephony.TelephonyManager: java.lang.String getDeviceId()&gt;() </source>
+                    <sourceCalledAt>org.cert.sendsms.Button1Listener: void onClick(android.view.View)</sourceCalledAt>
+                    <sinkDomain>IPC</sinkDomain>
+                    <sourceDomain>UNIQUE_IDENTIFIER</sourceDomain>
+                </Flow>
+            </sensitiveFlows>
+            <consumerMethod>startActivityForResult</consumerMethod>
+            <id>adjcg48kfmgjhsnfjrckfvftvg</id>
+            <random/>
+        </Intent>
+        <Intent>
+            <calledAt>org.cert.sendsms.Button1Listener: void onClick(android.view.View)</calledAt>
+            <sender>org.cert.sendsms.Button1Listener</sender>
+            <component></component>
+            <action>"android.intent.action.SEND"</action>
+            <dataType>"text/plain"</dataType>
+            <scheme></scheme>
+            <extra>true</extra>
+            <sensitiveData>false</sensitiveData>
+            <sensitiveFlows>
+                <Flow>
+                    <sink>&lt;android.content.Intent: android.content.Intent putExtra(java.lang.String,java.lang.String)&gt;("secret", $r4) </sink>
+                    <sinkCalledAt>org.cert.sendsms.Button1Listener: void onClick(android.view.View)</sinkCalledAt>
+                    <source> virtualinvoke $r6.&lt;org.cert.sendsms.MainActivity: java.lang.Object getSystemService(java.lang.String)&gt;("phone") </source>
+                    <sourceCalledAt>org.cert.sendsms.Button1Listener: void onClick(android.view.View)</sourceCalledAt>
+                    <sinkDomain>IPC</sinkDomain>
+                    <sourceDomain>UNDEFINED</sourceDomain>
+                </Flow>
+                <Flow>
+                    <sink>&lt;android.content.Intent: android.content.Intent putExtra(java.lang.String,java.lang.String)&gt;("secret", $r4) </sink>
+                    <sinkCalledAt>org.cert.sendsms.Button1Listener: void onClick(android.view.View)</sinkCalledAt>
+                    <source> virtualinvoke $r7.&lt;android.telephony.TelephonyManager: java.lang.String getDeviceId()&gt;() </source>
+                    <sourceCalledAt>org.cert.sendsms.Button1Listener: void onClick(android.view.View)</sourceCalledAt>
+                    <sinkDomain>IPC</sinkDomain>
+                    <sourceDomain>UNIQUE_IDENTIFIER</sourceDomain>
+                </Flow>
+            </sensitiveFlows>
+            <consumerMethod>startActivityForResult</consumerMethod>
+            <id>dgotmre5c4ltp1glrlhpepntss</id>
+            <random/>
+        </Intent>
+        <Intent>
+            <calledAt>org.cert.sendsms.Button1Listener: void onClick(android.view.View)</calledAt>
+            <sender>org.cert.sendsms.Button1Listener</sender>
+            <component></component>
+            <action>"android.intent.action.SEND"</action>
+            <dataType>"text/plain"</dataType>
+            <scheme></scheme>
+            <extra>true</extra>
+            <sensitiveData>false</sensitiveData>
+            <sensitiveFlows>
+                <Flow>
+                    <sink>&lt;android.content.Intent: android.content.Intent putExtra(java.lang.String,java.lang.String)&gt;("secret", $r4) </sink>
+                    <sinkCalledAt>org.cert.sendsms.Button1Listener: void onClick(android.view.View)</sinkCalledAt>
+                    <source> virtualinvoke $r6.&lt;org.cert.sendsms.MainActivity: java.lang.Object getSystemService(java.lang.String)&gt;("phone") </source>
+                    <sourceCalledAt>org.cert.sendsms.Button1Listener: void onClick(android.view.View)</sourceCalledAt>
+                    <sinkDomain>IPC</sinkDomain>
+                    <sourceDomain>UNDEFINED</sourceDomain>
+                </Flow>
+                <Flow>
+                    <sink>&lt;android.content.Intent: android.content.Intent putExtra(java.lang.String,java.lang.String)&gt;("secret", $r4) </sink>
+                    <sinkCalledAt>org.cert.sendsms.Button1Listener: void onClick(android.view.View)</sinkCalledAt>
+                    <source> virtualinvoke $r7.&lt;android.telephony.TelephonyManager: java.lang.String getDeviceId()&gt;() </source>
+                    <sourceCalledAt>org.cert.sendsms.Button1Listener: void onClick(android.view.View)</sourceCalledAt>
+                    <sinkDomain>IPC</sinkDomain>
+                    <sourceDomain>UNIQUE_IDENTIFIER</sourceDomain>
+                </Flow>
+            </sensitiveFlows>
+            <consumerMethod>startActivityForResult</consumerMethod>
+            <id>2u1virquhb41mm5779iqrort63</id>
+            <random/>
+        </Intent>
+    </newIntents>
+    <ContentProviders/>
+    <usesPermissions>
+        <permission>READ_PHONE_STATE</permission>
+        <permission>SEND_SMS</permission>
+    </usesPermissions>
+    <actuallyUsesPermissions>
+        <permission>SEND_SMS</permission>
+        <permission>READ_PHONE_STATE</permission>
+    </actuallyUsesPermissions>
+    <requiredPermissions/>
+    <apkFile>../../../app_repo/bundle/SendSMS.apk</apkFile>
+    <name>SendSMS</name>
+</application>

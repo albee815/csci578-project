@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<application>
+    <packageName>org.cert.echoer</packageName>
+    <components>
+        <Component>
+            <type>activity</type>
+            <name>org.cert.echoer.MainActivity</name>
+            <RequiredPermissions/>
+            <IntentFilter>
+                <filter>
+                    <actions>android.intent.action.SEND</actions>
+                    <data>
+                        <scheme></scheme>
+                        <mimeType>text/plain</mimeType>
+                        <host></host>
+                        <pathPattern></pathPattern>
+                    </data>
+                    <categories>android.intent.category.DEFAULT</categories>
+                    <pathData></pathData>
+                </filter>
+            </IntentFilter>
+            <PropagatedPermissions/>
+            <sensitiveFlows>
+                <Flow>
+                    <sink>&lt;android.util.Log: int i(java.lang.String,java.lang.String)&gt;("URI recieved in Echoer: ", $r1) </sink>
+                    <sinkCalledAt>org.cert.echoer.MainActivity: void getDataFromIntent()</sinkCalledAt>
+                    <source> virtualinvoke $r5.&lt;android.content.Intent: android.net.Uri getData()&gt;() </source>
+                    <sourceCalledAt>org.cert.echoer.MainActivity: void getDataFromIntent()</sourceCalledAt>
+                    <sinkDomain>LOG</sinkDomain>
+                    <sourceDomain>IPC</sourceDomain>
+                </Flow>
+                <Flow>
+                    <sink>&lt;android.util.Log: int i(java.lang.String,java.lang.String)&gt;("URI recieved in Echoer: ", $r1) </sink>
+                    <sinkCalledAt>org.cert.echoer.MainActivity: void getDataFromIntent()</sinkCalledAt>
+                    <source> virtualinvoke $r0.&lt;org.cert.echoer.MainActivity: android.content.Intent getIntent()&gt;() </source>
+                    <sourceCalledAt>org.cert.echoer.MainActivity: void getDataFromIntent()</sourceCalledAt>
+                    <sinkDomain>LOG</sinkDomain>
+                    <sourceDomain>IPC</sourceDomain>
+                </Flow>
+                <Flow>
+                    <sink>&lt;org.cert.echoer.MainActivity: void setContentView(int)&gt;(2130903040) </sink>
+                    <sinkCalledAt>org.cert.echoer.MainActivity: void onCreate(android.os.Bundle)</sinkCalledAt>
+                    <source> virtualinvoke $r0.&lt;org.cert.echoer.MainActivity: android.content.Intent getIntent()&gt;() </source>
+                    <sourceCalledAt>org.cert.echoer.MainActivity: void getDataFromIntent()</sourceCalledAt>
+                    <sinkDomain>UNDEFINED</sinkDomain>
+                    <sourceDomain>IPC</sourceDomain>
+                </Flow>
+                <Flow>
+                    <sink>&lt;android.app.Activity: void onCreate(android.os.Bundle)&gt;($r1) on line 17 </sink>
+                    <sinkCalledAt>org.cert.echoer.MainActivity: void onCreate(android.os.Bundle)</sinkCalledAt>
+                    <source> virtualinvoke $r0.&lt;org.cert.echoer.MainActivity: android.content.Intent getIntent()&gt;() </source>
+                    <sourceCalledAt>org.cert.echoer.MainActivity: void getDataFromIntent()</sourceCalledAt>
+                    <sinkDomain>NO_CATEGORY</sinkDomain>
+                    <sourceDomain>IPC</sourceDomain>
+                </Flow>
+                <Flow>
+                    <sink>&lt;android.util.Log: int i(java.lang.String,java.lang.String)&gt;("Data recieved in Echoer: ", $r1) </sink>
+                    <sinkCalledAt>org.cert.echoer.MainActivity: void getDataFromIntent()</sinkCalledAt>
+                    <source> virtualinvoke $r5.&lt;android.content.Intent: android.net.Uri getData()&gt;() </source>
+                    <sourceCalledAt>org.cert.echoer.MainActivity: void getDataFromIntent()</sourceCalledAt>
+                    <sinkDomain>LOG</sinkDomain>
+                    <sourceDomain>IPC</sourceDomain>
+                </Flow>
+                <Flow>
+                    <sink>&lt;android.util.Log: int i(java.lang.String,java.lang.String)&gt;("Data recieved in Echoer: ", $r1) </sink>
+                    <sinkCalledAt>org.cert.echoer.MainActivity: void getDataFromIntent()</sinkCalledAt>
+                    <source> virtualinvoke $r3.&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;("secret") </source>
+                    <sourceCalledAt>org.cert.echoer.MainActivity: void getDataFromIntent()</sourceCalledAt>
+                    <sinkDomain>LOG</sinkDomain>
+                    <sourceDomain>BUNDLE</sourceDomain>
+                </Flow>
+                <Flow>
+                    <sink>&lt;android.util.Log: int i(java.lang.String,java.lang.String)&gt;("Data recieved in Echoer: ", $r1) </sink>
+                    <sinkCalledAt>org.cert.echoer.MainActivity: void getDataFromIntent()</sinkCalledAt>
+                    <source> virtualinvoke $r0.&lt;org.cert.echoer.MainActivity: android.content.Intent getIntent()&gt;() </source>
+                    <sourceCalledAt>org.cert.echoer.MainActivity: void getDataFromIntent()</sourceCalledAt>
+                    <sinkDomain>LOG</sinkDomain>
+                    <sourceDomain>IPC</sourceDomain>
+                </Flow>
+                <Flow>
+                    <sink>&lt;android.util.Log: int i(java.lang.String,java.lang.String)&gt;("Data recieved in Echoer: ", $r1) </sink>
+                    <sinkCalledAt>org.cert.echoer.MainActivity: void getDataFromIntent()</sinkCalledAt>
+                    <source> virtualinvoke $r5.&lt;android.content.Intent: android.os.Bundle getExtras()&gt;() </source>
+                    <sourceCalledAt>org.cert.echoer.MainActivity: void getDataFromIntent()</sourceCalledAt>
+                    <sinkDomain>LOG</sinkDomain>
+                    <sourceDomain>IPC</sourceDomain>
+                </Flow>
+                <Flow>
+                    <sink>&lt;android.util.Log: int i(java.lang.String,java.lang.String)&gt;("Data recieved in Echoer: ", $r1) </sink>
+                    <sinkCalledAt>org.cert.echoer.MainActivity: void getDataFromIntent()</sinkCalledAt>
+                    <source> virtualinvoke $r5.&lt;android.content.Intent: android.os.Bundle getExtras()&gt;() </source>
+                    <sourceCalledAt>org.cert.echoer.MainActivity: void getDataFromIntent()</sourceCalledAt>
+                    <sinkDomain>LOG</sinkDomain>
+                    <sourceDomain>IPC</sourceDomain>
+                </Flow>
+            </sensitiveFlows>
+        </Component>
+    </components>
+    <newIntents>
+        <Intent>
+            <calledAt>org.cert.echoer.Button1Listener: void onClick(android.view.View)</calledAt>
+            <sender>org.cert.echoer.Button1Listener</sender>
+            <component></component>
+            <action></action>
+            <dataType></dataType>
+            <scheme></scheme>
+            <extra>false</extra>
+            <sensitiveData>false</sensitiveData>
+            <consumerMethod>setResult</consumerMethod>
+            <id>a85477kcr3hrmcu2fav8715bg0</id>
+            <random/>
+        </Intent>
+        <Intent>
+            <calledAt>org.cert.echoer.Button1Listener: void onClick(android.view.View)</calledAt>
+            <sender>org.cert.echoer.Button1Listener</sender>
+            <component></component>
+            <action></action>
+            <dataType></dataType>
+            <scheme></scheme>
+            <extra>false</extra>
+            <sensitiveData>false</sensitiveData>
+            <consumerMethod>setResult</consumerMethod>
+            <id>cmmali00kfn0vm752liqvks93m</id>
+            <random/>
+        </Intent>
+        <Intent>
+            <calledAt>org.cert.echoer.Button1Listener: void onClick(android.view.View)</calledAt>
+            <sender>org.cert.echoer.Button1Listener</sender>
+            <component></component>
+            <action></action>
+            <dataType></dataType>
+            <scheme></scheme>
+            <extra>false</extra>
+            <sensitiveData>false</sensitiveData>
+            <consumerMethod>setResult</consumerMethod>
+            <id>qkhh2r2fdodb83s5gpspk5tdl7</id>
+            <random/>
+        </Intent>
+        <Intent>
+            <calledAt>org.cert.echoer.Button1Listener: void onClick(android.view.View)</calledAt>
+            <sender>org.cert.echoer.Button1Listener</sender>
+            <component></component>
+            <action></action>
+            <dataType></dataType>
+            <scheme></scheme>
+            <extra>false</extra>
+            <sensitiveData>false</sensitiveData>
+            <consumerMethod>setResult</consumerMethod>
+            <id>1m8htro37u40dl0psv2miauhgt</id>
+            <random/>
+        </Intent>
+    </newIntents>
+    <ContentProviders/>
+    <usesPermissions/>
+    <actuallyUsesPermissions/>
+    <requiredPermissions/>
+    <apkFile>../../../app_repo/bundle/Echoer.apk</apkFile>
+    <name>Echoer</name>
+</application>

@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<application>
+    <packageName>org.cert.WriteFile</packageName>
+    <components>
+        <Component>
+            <type>activity</type>
+            <name>org.cert.WriteFile.MainActivity</name>
+            <RequiredPermissions/>
+            <IntentFilter>
+                <filter>
+                    <actions>android.intent.action.MAIN</actions>
+                    <categories>android.intent.category.LAUNCHER</categories>
+                    <pathData></pathData>
+                </filter>
+            </IntentFilter>
+            <PropagatedPermissions/>
+            <sensitiveFlows>
+                <Flow>
+                    <sink>&lt;java.io.FileOutputStream: void write(byte[])&gt;($r7) </sink>
+                    <sinkCalledAt>org.cert.WriteFile.MainActivity: void onActivityResult(int,int,android.content.Intent)</sinkCalledAt>
+                    <source> virtualinvoke $r1.&lt;android.content.Intent: android.os.Bundle getExtras()&gt;() </source>
+                    <sourceCalledAt>org.cert.WriteFile.MainActivity: void onActivityResult(int,int,android.content.Intent)</sourceCalledAt>
+                    <sinkDomain>UNDEFINED</sinkDomain>
+                    <sourceDomain>IPC</sourceDomain>
+                </Flow>
+                <Flow>
+                    <sink>&lt;android.util.Log: int i(java.lang.String,java.lang.String)&gt;("sinkFile.txt", $r5) on line 44 </sink>
+                    <sinkCalledAt>org.cert.WriteFile.MainActivity: void onActivityResult(int,int,android.content.Intent)</sinkCalledAt>
+                    <source> virtualinvoke $r6.&lt;android.os.Bundle: java.lang.String getString(java.lang.String)&gt;("secret") </source>
+                    <sourceCalledAt>org.cert.WriteFile.MainActivity: void onActivityResult(int,int,android.content.Intent)</sourceCalledAt>
+                    <sinkDomain>LOG</sinkDomain>
+                    <sourceDomain>BUNDLE</sourceDomain>
+                </Flow>
+                <Flow>
+                    <sink>&lt;android.util.Log: int i(java.lang.String,java.lang.String)&gt;("sinkFile.txt", $r5) on line 44 </sink>
+                    <sinkCalledAt>org.cert.WriteFile.MainActivity: void onActivityResult(int,int,android.content.Intent)</sinkCalledAt>
+                    <source> virtualinvoke $r1.&lt;android.content.Intent: android.os.Bundle getExtras()&gt;() </source>
+                    <sourceCalledAt>org.cert.WriteFile.MainActivity: void onActivityResult(int,int,android.content.Intent)</sourceCalledAt>
+                    <sinkDomain>LOG</sinkDomain>
+                    <sourceDomain>IPC</sourceDomain>
+                </Flow>
+            </sensitiveFlows>
+        </Component>
+    </components>
+    <newIntents>
+        <Intent>
+            <calledAt>org.cert.WriteFile.Button1Listener: void onClick(android.view.View)</calledAt>
+            <sender>org.cert.WriteFile.Button1Listener</sender>
+            <component></component>
+            <action>"android.intent.action.SEND"</action>
+            <dataType>"text/plain"</dataType>
+            <scheme></scheme>
+            <extra>true</extra>
+            <sensitiveData>false</sensitiveData>
+            <sensitiveFlows>
+                <Flow>
+                    <sink>&lt;android.content.Intent: android.content.Intent putExtra(java.lang.String,java.lang.String)&gt;("secret", $r2) </sink>
+                    <sinkCalledAt>org.cert.WriteFile.Button1Listener: void onClick(android.view.View)</sinkCalledAt>
+                    <source> virtualinvoke $r6.&lt;org.cert.WriteFile.MainActivity: java.lang.Object getSystemService(java.lang.String)&gt;("location") </source>
+                    <sourceCalledAt>org.cert.WriteFile.Button1Listener: java.lang.String getMyLocation()</sourceCalledAt>
+                    <sinkDomain>IPC</sinkDomain>
+                    <sourceDomain>UNDEFINED</sourceDomain>
+                </Flow>
+                <Flow>
+                    <sink>&lt;android.content.Intent: android.content.Intent putExtra(java.lang.String,java.lang.String)&gt;("secret", $r2) </sink>
+                    <sinkCalledAt>org.cert.WriteFile.Button1Listener: void onClick(android.view.View)</sinkCalledAt>
+                    <source> virtualinvoke $r5.&lt;android.location.Location: double getLatitude()&gt;() </source>
+                    <sourceCalledAt>org.cert.WriteFile.Button1Listener: java.lang.String getMyLocation()</sourceCalledAt>
+                    <sinkDomain>IPC</sinkDomain>
+                    <sourceDomain>LOCATION_INFORMATION</sourceDomain>
+                </Flow>
+                <Flow>
+                    <sink>&lt;android.content.Intent: android.content.Intent putExtra(java.lang.String,java.lang.String)&gt;("secret", $r2) </sink>
+                    <sinkCalledAt>org.cert.WriteFile.Button1Listener: void onClick(android.view.View)</sinkCalledAt>
+                    <source> virtualinvoke $r5.&lt;android.location.Location: double getLongitude()&gt;() </source>
+                    <sourceCalledAt>org.cert.WriteFile.Button1Listener: java.lang.String getMyLocation()</sourceCalledAt>
+                    <sinkDomain>IPC</sinkDomain>
+                    <sourceDomain>LOCATION_INFORMATION</sourceDomain>
+                </Flow>
+                <Flow>
+                    <sink>&lt;android.content.Intent: android.content.Intent putExtra(java.lang.String,java.lang.String)&gt;("secret", $r2) </sink>
+                    <sinkCalledAt>org.cert.WriteFile.Button1Listener: void onClick(android.view.View)</sinkCalledAt>
+                    <source> virtualinvoke $r7.&lt;android.location.LocationManager: android.location.Location getLastKnownLocation(java.lang.String)&gt;("gps") </source>
+                    <sourceCalledAt>org.cert.WriteFile.Button1Listener: java.lang.String getMyLocation()</sourceCalledAt>
+                    <sinkDomain>IPC</sinkDomain>
+                    <sourceDomain>LOCATION_INFORMATION</sourceDomain>
+                </Flow>
+            </sensitiveFlows>
+            <consumerMethod>startActivityForResult</consumerMethod>
+            <id>b81pp4a57rq7f72upr5klgt58k</id>
+            <random/>
+        </Intent>
+        <Intent>
+            <calledAt>org.cert.WriteFile.Button1Listener: void onClick(android.view.View)</calledAt>
+            <sender>org.cert.WriteFile.Button1Listener</sender>
+            <component></component>
+            <action>"android.intent.action.SEND"</action>
+            <dataType>"text/plain"</dataType>
+            <scheme></scheme>
+            <extra>true</extra>
+            <sensitiveData>false</sensitiveData>
+            <sensitiveFlows>
+                <Flow>
+                    <sink>&lt;android.content.Intent: android.content.Intent putExtra(java.lang.String,java.lang.String)&gt;("secret", $r2) </sink>
+                    <sinkCalledAt>org.cert.WriteFile.Button1Listener: void onClick(android.view.View)</sinkCalledAt>
+                    <source> virtualinvoke $r6.&lt;org.cert.WriteFile.MainActivity: java.lang.Object getSystemService(java.lang.String)&gt;("location") </source>
+                    <sourceCalledAt>org.cert.WriteFile.Button1Listener: java.lang.String getMyLocation()</sourceCalledAt>
+                    <sinkDomain>IPC</sinkDomain>
+                    <sourceDomain>UNDEFINED</sourceDomain>
+                </Flow>
+                <Flow>
+                    <sink>&lt;android.content.Intent: android.content.Intent putExtra(java.lang.String,java.lang.String)&gt;("secret", $r2) </sink>
+                    <sinkCalledAt>org.cert.WriteFile.Button1Listener: void onClick(android.view.View)</sinkCalledAt>
+                    <source> virtualinvoke $r5.&lt;android.location.Location: double getLatitude()&gt;() </source>
+                    <sourceCalledAt>org.cert.WriteFile.Button1Listener: java.lang.String getMyLocation()</sourceCalledAt>
+                    <sinkDomain>IPC</sinkDomain>
+                    <sourceDomain>LOCATION_INFORMATION</sourceDomain>
+                </Flow>
+                <Flow>
+                    <sink>&lt;android.content.Intent: android.content.Intent putExtra(java.lang.String,java.lang.String)&gt;("secret", $r2) </sink>
+                    <sinkCalledAt>org.cert.WriteFile.Button1Listener: void onClick(android.view.View)</sinkCalledAt>
+                    <source> virtualinvoke $r5.&lt;android.location.Location: double getLongitude()&gt;() </source>
+                    <sourceCalledAt>org.cert.WriteFile.Button1Listener: java.lang.String getMyLocation()</sourceCalledAt>
+                    <sinkDomain>IPC</sinkDomain>
+                    <sourceDomain>LOCATION_INFORMATION</sourceDomain>
+                </Flow>
+                <Flow>
+                    <sink>&lt;android.content.Intent: android.content.Intent putExtra(java.lang.String,java.lang.String)&gt;("secret", $r2) </sink>
+                    <sinkCalledAt>org.cert.WriteFile.Button1Listener: void onClick(android.view.View)</sinkCalledAt>
+                    <source> virtualinvoke $r7.&lt;android.location.LocationManager: android.location.Location getLastKnownLocation(java.lang.String)&gt;("gps") </source>
+                    <sourceCalledAt>org.cert.WriteFile.Button1Listener: java.lang.String getMyLocation()</sourceCalledAt>
+                    <sinkDomain>IPC</sinkDomain>
+                    <sourceDomain>LOCATION_INFORMATION</sourceDomain>
+                </Flow>
+            </sensitiveFlows>
+            <consumerMethod>startActivityForResult</consumerMethod>
+            <id>d1s58ldal8t99u8iah3q1qiuh</id>
+            <random/>
+        </Intent>
+        <Intent>
+            <calledAt>org.cert.WriteFile.Button1Listener: void onClick(android.view.View)</calledAt>
+            <sender>org.cert.WriteFile.Button1Listener</sender>
+            <component></component>
+            <action>"android.intent.action.SEND"</action>
+            <dataType>"text/plain"</dataType>
+            <scheme></scheme>
+            <extra>true</extra>
+            <sensitiveData>false</sensitiveData>
+            <sensitiveFlows>
+                <Flow>
+                    <sink>&lt;android.content.Intent: android.content.Intent putExtra(java.lang.String,java.lang.String)&gt;("secret", $r2) </sink>
+                    <sinkCalledAt>org.cert.WriteFile.Button1Listener: void onClick(android.view.View)</sinkCalledAt>
+                    <source> virtualinvoke $r6.&lt;org.cert.WriteFile.MainActivity: java.lang.Object getSystemService(java.lang.String)&gt;("location") </source>
+                    <sourceCalledAt>org.cert.WriteFile.Button1Listener: java.lang.String getMyLocation()</sourceCalledAt>
+                    <sinkDomain>IPC</sinkDomain>
+                    <sourceDomain>UNDEFINED</sourceDomain>
+                </Flow>
+                <Flow>
+                    <sink>&lt;android.content.Intent: android.content.Intent putExtra(java.lang.String,java.lang.String)&gt;("secret", $r2) </sink>
+                    <sinkCalledAt>org.cert.WriteFile.Button1Listener: void onClick(android.view.View)</sinkCalledAt>
+                    <source> virtualinvoke $r5.&lt;android.location.Location: double getLatitude()&gt;() </source>
+                    <sourceCalledAt>org.cert.WriteFile.Button1Listener: java.lang.String getMyLocation()</sourceCalledAt>
+                    <sinkDomain>IPC</sinkDomain>
+                    <sourceDomain>LOCATION_INFORMATION</sourceDomain>
+                </Flow>
+                <Flow>
+                    <sink>&lt;android.content.Intent: android.content.Intent putExtra(java.lang.String,java.lang.String)&gt;("secret", $r2) </sink>
+                    <sinkCalledAt>org.cert.WriteFile.Button1Listener: void onClick(android.view.View)</sinkCalledAt>
+                    <source> virtualinvoke $r5.&lt;android.location.Location: double getLongitude()&gt;() </source>
+                    <sourceCalledAt>org.cert.WriteFile.Button1Listener: java.lang.String getMyLocation()</sourceCalledAt>
+                    <sinkDomain>IPC</sinkDomain>
+                    <sourceDomain>LOCATION_INFORMATION</sourceDomain>
+                </Flow>
+                <Flow>
+                    <sink>&lt;android.content.Intent: android.content.Intent putExtra(java.lang.String,java.lang.String)&gt;("secret", $r2) </sink>
+                    <sinkCalledAt>org.cert.WriteFile.Button1Listener: void onClick(android.view.View)</sinkCalledAt>
+                    <source> virtualinvoke $r7.&lt;android.location.LocationManager: android.location.Location getLastKnownLocation(java.lang.String)&gt;("gps") </source>
+                    <sourceCalledAt>org.cert.WriteFile.Button1Listener: java.lang.String getMyLocation()</sourceCalledAt>
+                    <sinkDomain>IPC</sinkDomain>
+                    <sourceDomain>LOCATION_INFORMATION</sourceDomain>
+                </Flow>
+            </sensitiveFlows>
+            <consumerMethod>startActivityForResult</consumerMethod>
+            <id>cshvak3pj42lp6n4s3kb832rhc</id>
+            <random/>
+        </Intent>
+        <Intent>
+            <calledAt>org.cert.WriteFile.Button1Listener: void onClick(android.view.View)</calledAt>
+            <sender>org.cert.WriteFile.Button1Listener</sender>
+            <component></component>
+            <action>"android.intent.action.SEND"</action>
+            <dataType>"text/plain"</dataType>
+            <scheme></scheme>
+            <extra>true</extra>
+            <sensitiveData>false</sensitiveData>
+            <sensitiveFlows>
+                <Flow>
+                    <sink>&lt;android.content.Intent: android.content.Intent putExtra(java.lang.String,java.lang.String)&gt;("secret", $r2) </sink>
+                    <sinkCalledAt>org.cert.WriteFile.Button1Listener: void onClick(android.view.View)</sinkCalledAt>
+                    <source> virtualinvoke $r6.&lt;org.cert.WriteFile.MainActivity: java.lang.Object getSystemService(java.lang.String)&gt;("location") </source>
+                    <sourceCalledAt>org.cert.WriteFile.Button1Listener: java.lang.String getMyLocation()</sourceCalledAt>
+                    <sinkDomain>IPC</sinkDomain>
+                    <sourceDomain>UNDEFINED</sourceDomain>
+                </Flow>
+                <Flow>
+                    <sink>&lt;android.content.Intent: android.content.Intent putExtra(java.lang.String,java.lang.String)&gt;("secret", $r2) </sink>
+                    <sinkCalledAt>org.cert.WriteFile.Button1Listener: void onClick(android.view.View)</sinkCalledAt>
+                    <source> virtualinvoke $r5.&lt;android.location.Location: double getLatitude()&gt;() </source>
+                    <sourceCalledAt>org.cert.WriteFile.Button1Listener: java.lang.String getMyLocation()</sourceCalledAt>
+                    <sinkDomain>IPC</sinkDomain>
+                    <sourceDomain>LOCATION_INFORMATION</sourceDomain>
+                </Flow>
+                <Flow>
+                    <sink>&lt;android.content.Intent: android.content.Intent putExtra(java.lang.String,java.lang.String)&gt;("secret", $r2) </sink>
+                    <sinkCalledAt>org.cert.WriteFile.Button1Listener: void onClick(android.view.View)</sinkCalledAt>
+                    <source> virtualinvoke $r5.&lt;android.location.Location: double getLongitude()&gt;() </source>
+                    <sourceCalledAt>org.cert.WriteFile.Button1Listener: java.lang.String getMyLocation()</sourceCalledAt>
+                    <sinkDomain>IPC</sinkDomain>
+                    <sourceDomain>LOCATION_INFORMATION</sourceDomain>
+                </Flow>
+                <Flow>
+                    <sink>&lt;android.content.Intent: android.content.Intent putExtra(java.lang.String,java.lang.String)&gt;("secret", $r2) </sink>
+                    <sinkCalledAt>org.cert.WriteFile.Button1Listener: void onClick(android.view.View)</sinkCalledAt>
+                    <source> virtualinvoke $r7.&lt;android.location.LocationManager: android.location.Location getLastKnownLocation(java.lang.String)&gt;("gps") </source>
+                    <sourceCalledAt>org.cert.WriteFile.Button1Listener: java.lang.String getMyLocation()</sourceCalledAt>
+                    <sinkDomain>IPC</sinkDomain>
+                    <sourceDomain>LOCATION_INFORMATION</sourceDomain>
+                </Flow>
+            </sensitiveFlows>
+            <consumerMethod>startActivityForResult</consumerMethod>
+            <id>8itt0f2otsbqruidl71vvmqhdg</id>
+            <random/>
+        </Intent>
+    </newIntents>
+    <ContentProviders/>
+    <usesPermissions>
+        <permission>ACCESS_FINE_LOCATION</permission>
+    </usesPermissions>
+    <actuallyUsesPermissions>
+        <permission>ACCESS_FINE_LOCATION</permission>
+    </actuallyUsesPermissions>
+    <requiredPermissions/>
+    <apkFile>../../../app_repo/bundle/WriteFile.apk</apkFile>
+    <name>WriteFile</name>
+</application>
