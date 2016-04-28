@@ -10,6 +10,8 @@ echo "Running parser..."
 python parser.py
 echo "Finding links"
 python links.py
+echo "Analyzing COVERT output..."
+python covert.py
 echo "Creating architectural models..."
 python architectural_model.py
 

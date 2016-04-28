@@ -72,7 +72,7 @@ class iccAPI:
   #Add an app component
   def addIntentComponent(self, app_id, intent_id, component):
 
-    component_id= self.getComponent(component)
+    component_id= self.getComponent(app_id, component)
 
     if(component_id < 0):
        component_id = self.addComponent(app_id, component, 'Unknown')
@@ -493,16 +493,15 @@ class iccAPI:
 
     intents= [];
 
-    sql = "SELECT Intents.id, Intents.implicit, Intents.method FROM Intents LEFT JOIN IActions ON \
-          Intents.id = IActions.intent_id LEFT JOIN ActionStrings ON IActions.action = ActionStrings.id WHERE Intents.source ='%d'\
-          AND ActionStrings.st != 'android.intent.action.MAIN'" %(component_id)
+    sql = "SELECT Intents.id, Intents.implicit, Intents.method, ActionStrings.st FROM Intents LEFT JOIN IActions ON \
+          Intents.id = IActions.intent_id LEFT JOIN ActionStrings ON IActions.action = ActionStrings.id WHERE Intents.source ='%d'" %(component_id)
 
     try:
       self.cursor.execute(sql)
       results = self.cursor.fetchall()
-
       for i in results:
-          intents.append({'id':i[0], 'implicit': i[1], 'method':i[2]})
+          if i[3] != "android.intent.action.MAIN":
+             intents.append({'id':i[0], 'implicit': i[1], 'method':i[2]})
 
       return intents;
 
@@ -563,6 +562,34 @@ class iccAPI:
     except:
         self.db.rollback()
         print "Error: unable to set didfail link"
+
+  #Get and set component vulnerable links
+  def markCovertSpoofingVulnerabilities(self, app, component):
+
+    sql = "UPDATE Links AS A, (SELECT Links.id FROM Links LEFT JOIN Components ON Links.target = Components.id \
+    LEFT JOIN Applications ON Components.app_id = Applications.id WHERE Components.component = '%s' AND Applications.app= '%s') as B\
+    SET covert = 1 WHERE A.id = B.id" %(component, app)
+
+    try:
+      self.cursor.execute(sql)
+      self.db.commit()
+
+    except:
+        self.db.rollback()
+        print "Error: unable to find covert vulnerable links"
+
+  #Set covert link
+  def setCovertVulnerableLink(self, link_id):
+
+    sql = "UPDATE Links SET covert = 1 WHERE Links.id = '%d'" %(link_id)
+
+    try:
+      self.cursor.execute(sql)
+      self.db.commit()
+
+    except:
+        self.db.rollback()
+        print "Error: unable to set covert link"
 
   #Get component links
   def linkExists(self, source, target, method, action):
@@ -673,4 +700,6 @@ class iccAPI:
 
     except:
         print "Error: unable to fetch intent matches"
-        
+
+
+

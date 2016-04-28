@@ -9,11 +9,9 @@ applications = icc.getApplications()
 for app in applications:
 
     id = app['id']
-
     #get components
     app_components = icc.getApplicationComponents(id)
     for app_component in app_components:
-
         #get intents
         intents = icc.getComponentIntents(app_component['id'])
         for intent in intents:
