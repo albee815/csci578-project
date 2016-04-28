@@ -4,7 +4,7 @@ class iccAPI:
 
   #connect to db
   def __init__(self):
-    self.db = MySQLdb.connect("localhost","root","123","icc" )
+    self.db = MySQLdb.connect("localhost","homestead","secret","icc" )
     self.cursor = self.db.cursor()
 
   #close db connection
@@ -529,6 +529,41 @@ class iccAPI:
     except:
         print "Error: unable to fetch component links"
 
+
+  #Get component vulnerable links
+  def findVulnerableLinks(self, app1, app2):
+
+    links= [];
+
+    sql = "SELECT Links.id FROM Links LEFT JOIN Components as A ON Links.source = A.id \
+    LEFT JOIN Components as B ON Links.target = B.id LEFT JOIN Applications as C ON A.app_id = C.id LEFT JOIN Applications\
+    as D ON B.app_id = D.id WHERE C.app = '%s' AND D.app = '%s'" %(app1, app2)
+
+    try:
+      self.cursor.execute(sql)
+      results = self.cursor.fetchall()
+
+      for i in results:
+          links.append(i[0])
+
+      return links;
+
+    except:
+        print "Error: unable to find didfail vulnerable links"
+
+  #Set difail link
+  def setDidfailVulnerableLink(self, link_id):
+
+    sql = "UPDATE Links SET didfail = 1 WHERE Links.id = '%d'" %(link_id)
+
+    try:
+      self.cursor.execute(sql)
+      self.db.commit()
+
+    except:
+        self.db.rollback()
+        print "Error: unable to set didfail link"
+
   #Get component links
   def linkExists(self, source, target, method, action):
 
@@ -638,6 +673,4 @@ class iccAPI:
 
     except:
         print "Error: unable to fetch intent matches"
-
-
-
+        
