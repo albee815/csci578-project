@@ -144,14 +144,16 @@ CREATE TABLE `IMimeTypes` (
 --
 -- ICCLeaks
 
-CREATE TABLE `Leaks` (
+CREATE TABLE `Links` (
   `id` int NOT NULL AUTO_INCREMENT,
   `source` int NOT NULL,
-  `destination` int NOT NULL,
+  `target` int NOT NULL,
+  `method` varchar(191),
+  `action` varchar(191),
   `covert` bool NOT NULL,
   `didfail` bool NOT NULL,
   PRIMARY KEY (`id`),
   FOREIGN KEY (`source`) REFERENCES Components(`id`) ON DELETE CASCADE,
-  FOREIGN KEY (`destination`) REFERENCES Components(`id`)
+  FOREIGN KEY (`target`) REFERENCES Components(`id`) ON DELETE CASCADE
 ) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin;
 --

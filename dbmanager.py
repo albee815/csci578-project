@@ -4,7 +4,7 @@ class iccAPI:
 
   #connect to db
   def __init__(self):
-    self.db = MySQLdb.connect("localhost","homestead","secret","icc" )
+    self.db = MySQLdb.connect("localhost","root","123","icc" )
     self.cursor = self.db.cursor()
 
   #close db connection
@@ -305,6 +305,25 @@ class iccAPI:
         self.db.rollback()
         print "Error: unable to add category string"
 
+  def addLink(self, source, target, method, action):
+
+    if self.linkExists(source,target, method, action):
+       return "Link exists"
+
+    sql = "INSERT INTO Links(source, target, method, action, covert, didfail) VALUES ('%d','%d','%s','%s',0,0)" %(source,target,method,action)
+
+    try:
+      # Execute the SQL command
+      self.cursor.execute(sql)
+      self.db.commit()
+
+      #Return application id
+      return self.cursor.lastrowid
+
+    except:
+        self.db.rollback()
+        print "Error: unable to add link"
+
   #Get applications
   def getApplications(self):
 
@@ -491,6 +510,40 @@ class iccAPI:
         print "Error: unable to fetch component intents"
 
 
+  #Get component links
+  def getComponentLinks(self, component_id):
+
+    links= [];
+
+    sql = "SELECT target, method, action, covert, didfail FROM Links WHERE source = '%d'" %(component_id)
+
+    try:
+      self.cursor.execute(sql)
+      results = self.cursor.fetchall()
+
+      for i in results:
+          links.append({'target': i[0], 'method':i[1], 'action':i[2], 'covert':i[3], 'didfail':i[4]})
+
+      return links;
+
+    except:
+        print "Error: unable to fetch component links"
+
+  #Get component links
+  def linkExists(self, source, target, method, action):
+
+    sql = "SELECT * FROM Links WHERE source = '%d' AND target = '%d' AND method = '%s' AND action = '%s'" %(source, target, method, action)
+    try:
+      self.cursor.execute(sql)
+      result = len(self.cursor.fetchall())
+      if result > 0:
+         return 1
+      else:
+         return 0
+      
+    except:
+        print "Error: unable to check link existence"
+
   #Get explicit intent component
   def getIntentComponent(self, intent_id):
 
@@ -567,7 +620,7 @@ class iccAPI:
     #no actions specified
     else:
         if mimetype != None:
-           sql = "SELECT Components.id FROM Components LEFT JOIN IntentFilters ON \
+           sql = "SELECT DISTINCT Components.id FROM Components LEFT JOIN IntentFilters ON \
            Components.id = IntentFilters.component_id LEFT JOIN IFMimeTypes ON IntentFilters.id = IFMimeTypes.filter_id \
            LEFT JOIN IFActions ON IFActions.filter_id = IntentFilters.id LEFT JOIN ActionStrings ON IFActions.action = ActionStrings.id\
            WHERE IFMimeTypes.type ='%s'" %(mimetype)

@@ -1,5 +1,4 @@
 from dbmanager import iccAPI
-import MySQLdb
 import json
 
 #Data format accepted by Visualization tool
@@ -33,27 +32,18 @@ for app in applications:
         nodes.append({'name': component_name, 'permissions': component_permissions, 'width':120, 'height':50}) #for visualization tool
         leaves.append(len(nodes)-1)
 
-        #get intents
-        intents = icc.getComponentIntents(app_component['id'])
-        for intent in intents:
-            #implicit intents
-            if (intent['implicit']):
+        #get links
+        clinks = icc.getComponentLinks(app_component['id'])
+        for clink in clinks:
+            color = "black"
+            if clink['covert'] and clink['didfail']:
+               color = "red"
+            elif clink['covert']:
+                 color = "blue"
+            elif clink['didfail']:
+                 color = "purple"
 
-                action = icc.getIntentAction(intent['id'])
-                mimetype = icc.getIntentMimeType(intent['id'])
-
-                #find matches
-                matches = icc.getIntentMatches(action,mimetype);
-                matches;
-                for match in matches:
-                    links.append({'source': len(nodes)-1 , 'target': match-1, 'method': intent['method'], 'action': action})
-            #explicit intents
-            else:
-                target = icc.getIntentComponent(intent['id'])
-                if(target != None):
-                   action = icc.getIntentAction(intent['id'])
-                   links.append({'source': len(nodes)-1 , 'target': target-1, 'method': intent['method'], 'action': action})
-
+            links.append({'source': app_component['id']-1 , 'target': clink['target']-1, 'method': clink['method'],'action': clink['action'], 'color':color})
 
     groups.append({'name':app_name,'permissions': app_permissions, 'leaves':leaves})
 

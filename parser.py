@@ -1,6 +1,5 @@
 from bs4 import BeautifulSoup
 from dbmanager import iccAPI
-import MySQLdb
 import os
 
 #Location of .xml files
