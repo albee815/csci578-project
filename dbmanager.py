@@ -4,7 +4,7 @@ class iccAPI:
 
   #connect to db
   def __init__(self):
-    self.db = MySQLdb.connect("localhost","homestead","secret","icc" )
+    self.db = MySQLdb.connect("localhost","root","123","icc" )
     self.cursor = self.db.cursor()
 
   #close db connection
