@@ -684,7 +684,6 @@ class iccAPI:
         if mimetype != None:
            sql = "SELECT DISTINCT Components.id FROM Components LEFT JOIN IntentFilters ON \
            Components.id = IntentFilters.component_id LEFT JOIN IFMimeTypes ON IntentFilters.id = IFMimeTypes.filter_id \
-           LEFT JOIN IFActions ON IFActions.filter_id = IntentFilters.id LEFT JOIN ActionStrings ON IFActions.action = ActionStrings.id\
            WHERE IFMimeTypes.type ='%s'" %(mimetype)
         else:
             return matches
