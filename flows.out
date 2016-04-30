@@ -1,0 +1,57 @@
+Changed: OrderedSet(['Sink: <android.util.Log: int i(java.lang.String,java.lang.String)>', IntentResult(i=Intent(tx=('org.cert.WriteFile', None), rx=('org.cert.echoer', None), intent_id='newField_6')), IntentResult(i=Intent(tx=('org.cert.sendsms', None), rx=('org.cert.echoer', None), intent_id='newField_6')), 'Sink: <android.telephony.SmsManager: void sendTextMessage(java.lang.String,java.lang.String,java.lang.String,android.app.PendingIntent,android.app.PendingIntent)>', Intent(tx=('org.cert.sendsms', None), rx=('org.cert.echoer', None), intent_id='newField_6'), 'Sink: <java.io.FileOutputStream: void write(byte[])>', Intent(tx=('org.cert.WriteFile', None), rx=('org.cert.echoer', None), intent_id='newField_6')])
+Changed: OrderedSet([IntentResult(i=Intent(tx=('org.cert.WriteFile', None), rx=('org.cert.echoer', None), intent_id='newField_6')), IntentResult(i=Intent(tx=('org.cert.sendsms', None), rx=('org.cert.echoer', None), intent_id='newField_6')), 'Sink: <android.telephony.SmsManager: void sendTextMessage(java.lang.String,java.lang.String,java.lang.String,android.app.PendingIntent,android.app.PendingIntent)>', 'Sink: <java.io.FileOutputStream: void write(byte[])>'])
+Changed: OrderedSet()
+---- Flows with 0 intent(s) ---------------------------------
+[Flow(src='Src: <android.os.Bundle: java.lang.String getString(java.lang.String)>', app='org.cert.echoer', sink='Sink: <android.util.Log: int i(java.lang.String,java.lang.String)>'),
+ Flow(src='Src: <android.telephony.TelephonyManager: java.lang.String getDeviceId()>', app='org.cert.sendsms', sink='Sink: <android.util.Log: int i(java.lang.String,java.lang.String)>'),
+ Flow(src='Src: <android.os.Bundle: java.lang.String getString(java.lang.String)>', app='org.cert.sendsms', sink='Sink: <android.telephony.SmsManager: void sendTextMessage(java.lang.String,java.lang.String,java.lang.String,android.app.PendingIntent,android.app.PendingIntent)>'),
+ Flow(src='Src: <android.location.Location: double getLongitude()>', app='org.cert.WriteFile', sink='Sink: <android.util.Log: int i(java.lang.String,java.lang.String)>'),
+ Flow(src='Src: <android.location.Location: double getLatitude()>', app='org.cert.WriteFile', sink='Sink: <android.util.Log: int i(java.lang.String,java.lang.String)>'),
+ Flow(src='Src: <android.location.LocationManager: android.location.Location getLastKnownLocation(java.lang.String)>', app='org.cert.WriteFile', sink='Sink: <android.util.Log: int i(java.lang.String,java.lang.String)>'),
+ Flow(src='Src: <android.os.Bundle: java.lang.String getString(java.lang.String)>', app='org.cert.WriteFile', sink='Sink: <android.util.Log: int i(java.lang.String,java.lang.String)>'),
+ Flow(src='Src: <android.os.Bundle: java.lang.String getString(java.lang.String)>', app='org.cert.WriteFile', sink='Sink: <java.io.FileOutputStream: void write(byte[])>')]
+---- Flows with 1 intent(s) ---------------------------------
+[Flow(src=Intent(tx=('org.cert.WriteFile', None), rx=('org.cert.echoer', None), intent_id='newField_6'), app=None, sink='Sink: <android.util.Log: int i(java.lang.String,java.lang.String)>'),
+ Flow(src=Intent(tx=('org.cert.sendsms', None), rx=('org.cert.echoer', None), intent_id='newField_6'), app=None, sink='Sink: <android.util.Log: int i(java.lang.String,java.lang.String)>'),
+ Flow(src=IntentResult(i=Intent(tx=('org.cert.sendsms', None), rx=('org.cert.echoer', None), intent_id='newField_6')), app=None, sink='Sink: <android.telephony.SmsManager: void sendTextMessage(java.lang.String,java.lang.String,java.lang.String,android.app.PendingIntent,android.app.PendingIntent)>'),
+ Flow(src='Src: <android.telephony.TelephonyManager: java.lang.String getDeviceId()>', app=None, sink=Intent(tx=('org.cert.sendsms', None), rx=('org.cert.echoer', None), intent_id='newField_6')),
+ Flow(src=IntentResult(i=Intent(tx=('org.cert.WriteFile', None), rx=('org.cert.echoer', None), intent_id='newField_6')), app=None, sink='Sink: <android.util.Log: int i(java.lang.String,java.lang.String)>'),
+ Flow(src=IntentResult(i=Intent(tx=('org.cert.WriteFile', None), rx=('org.cert.echoer', None), intent_id='newField_6')), app=None, sink='Sink: <java.io.FileOutputStream: void write(byte[])>'),
+ Flow(src='Src: <android.location.Location: double getLongitude()>', app=None, sink=Intent(tx=('org.cert.WriteFile', None), rx=('org.cert.echoer', None), intent_id='newField_6')),
+ Flow(src='Src: <android.location.Location: double getLatitude()>', app=None, sink=Intent(tx=('org.cert.WriteFile', None), rx=('org.cert.echoer', None), intent_id='newField_6')),
+ Flow(src='Src: <android.location.LocationManager: android.location.Location getLastKnownLocation(java.lang.String)>', app=None, sink=Intent(tx=('org.cert.WriteFile', None), rx=('org.cert.echoer', None), intent_id='newField_6'))]
+---- Flows with 2 intent(s) ---------------------------------
+[Flow(src=Intent(tx=('org.cert.WriteFile', None), rx=('org.cert.echoer', None), intent_id='newField_6'), app=None, sink=IntentResult(i=Intent(tx=('org.cert.WriteFile', None), rx=('org.cert.echoer', None), intent_id='newField_6'))),
+ Flow(src=Intent(tx=('org.cert.sendsms', None), rx=('org.cert.echoer', None), intent_id='newField_6'), app=None, sink=IntentResult(i=Intent(tx=('org.cert.sendsms', None), rx=('org.cert.echoer', None), intent_id='newField_6')))]
+--------------------------------------------------------------
+--------------------------------------------------------------
+--------------------
+### 'Intent(tx=('org.cert.WriteFile', None), rx=('org.cert.echoer', None), intent_id='newField_6')': ###
+['Src: <android.location.Location: double getLongitude()>',
+ 'Src: <android.location.Location: double getLatitude()>',
+ 'Src: <android.location.LocationManager: android.location.Location getLastKnownLocation(java.lang.String)>']
+### 'Intent(tx=('org.cert.sendsms', None), rx=('org.cert.echoer', None), intent_id='newField_6')': ###
+['Src: <android.telephony.TelephonyManager: java.lang.String getDeviceId()>']
+--------------------
+### 'IntentResult(i=Intent(tx=('org.cert.WriteFile', None), rx=('org.cert.echoer', None), intent_id='newField_6'))': ###
+['Src: <android.location.Location: double getLongitude()>',
+ 'Src: <android.location.Location: double getLatitude()>',
+ 'Src: <android.location.LocationManager: android.location.Location getLastKnownLocation(java.lang.String)>']
+### 'IntentResult(i=Intent(tx=('org.cert.sendsms', None), rx=('org.cert.echoer', None), intent_id='newField_6'))': ###
+['Src: <android.telephony.TelephonyManager: java.lang.String getDeviceId()>']
+--------------------
+### 'Sink: <java.io.FileOutputStream: void write(byte[])>': ###
+['Src: <android.os.Bundle: java.lang.String getString(java.lang.String)>',
+ 'Src: <android.location.Location: double getLongitude()>',
+ 'Src: <android.location.Location: double getLatitude()>',
+ 'Src: <android.location.LocationManager: android.location.Location getLastKnownLocation(java.lang.String)>']
+### 'Sink: <android.util.Log: int i(java.lang.String,java.lang.String)>': ###
+['Src: <android.os.Bundle: java.lang.String getString(java.lang.String)>',
+ 'Src: <android.telephony.TelephonyManager: java.lang.String getDeviceId()>',
+ 'Src: <android.location.Location: double getLongitude()>',
+ 'Src: <android.location.Location: double getLatitude()>',
+ 'Src: <android.location.LocationManager: android.location.Location getLastKnownLocation(java.lang.String)>']
+### 'Sink: <android.telephony.SmsManager: void sendTextMessage(java.lang.String,java.lang.String,java.lang.String,android.app.PendingIntent,android.app.PendingIntent)>': ###
+['Src: <android.os.Bundle: java.lang.String getString(java.lang.String)>',
+ 'Src: <android.telephony.TelephonyManager: java.lang.String getDeviceId()>']
+--------------------
