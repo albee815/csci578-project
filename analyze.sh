@@ -14,5 +14,7 @@ echo "Analyzing COVERT output..."
 python covert.py
 echo "Creating architectural models..."
 python architectural_model.py
+echo "Analyzing Didfail output..."
+python didfail.py
 
 echo "Done"
